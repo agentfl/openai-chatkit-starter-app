@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+console.log("✅ Chat API route is loading...");
 
 export const runtime = "edge";
 
