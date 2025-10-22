@@ -24,8 +24,9 @@ export async function POST(req: Request) {
     }
 
     // ✅ Updated endpoint per current AgentBuilder spec
-    const runResponse = await fetch(
-      `https://api.openai.com/v1/agent/workflows/${workflowId}/runs`,
+    const response = await fetch(
+  `https://api.openai.com/v1/agents/${workflowId}/runs`,
+
       {
         method: "POST",
         headers: {
