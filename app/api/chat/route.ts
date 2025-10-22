@@ -5,7 +5,6 @@ export const runtime = "edge";
 export async function POST(req: Request) {
   try {
     const { message } = await req.json();
-
     if (!message) {
       return NextResponse.json(
         { ok: false, error: "Missing 'message' field" },
@@ -16,34 +15,63 @@ export async function POST(req: Request) {
     const apiKey = process.env.OPENAI_API_KEY;
     const workflowId = process.env.NEXT_PUBLIC_CHATKIT_WORKFLOW_ID;
 
-    if (!apiKey) {
+    if (!apiKey || !workflowId) {
       return NextResponse.json(
-        { ok: false, error: "Missing OPENAI_API_KEY in environment" },
+        { ok: false, error: "Missing OPENAI_API_KEY or Workflow ID" },
         { status: 500 }
       );
     }
 
-    // 👇 Send message to OpenAI or your workflow
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          { role: "system", content: `Workflow ID: ${workflowId ?? "none"}` },
-          { role: "user", content: message },
-        ],
-      }),
-    });
+    // 1️⃣ Create a workflow run
+    const runResponse = await fetch(
+      `https://api.openai.com/v1/workflows/${workflowId}/runs`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          input: { message },
+        }),
+      }
+    );
 
-    const data = await response.json();
+    const runData = await runResponse.json();
+
+    if (!runData?.id) {
+      return NextResponse.json(
+        { ok: false, error: "Failed to start workflow", details: runData },
+        { status: 500 }
+      );
+    }
+
+    // 2️⃣ Poll the workflow until it's finished
+    let outputData = null;
+    for (let i = 0; i < 15; i++) {
+      const check = await fetch(
+        `https://api.openai.com/v1/workflows/runs/${runData.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+          },
+        }
+      );
+
+      const result = await check.json();
+      if (result.status === "succeeded") {
+        outputData = result.output;
+        break;
+      }
+
+      // wait before next poll (1 second)
+      await new Promise((r) => setTimeout(r, 1000));
+    }
 
     return NextResponse.json({
       ok: true,
-      reply: data?.choices?.[0]?.message?.content ?? "(no response)",
+      workflow_id: workflowId,
+      output: outputData ?? "(no workflow output after polling)",
     });
   } catch (err) {
     return NextResponse.json(
