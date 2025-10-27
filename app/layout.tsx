@@ -24,10 +24,20 @@ export default function RootLayout({
       background-color: white !important;
     }
   `}</style>
-      </head>
-      <body className="antialiased flex items-center justify-center min-h-screen bg-white">
-  {children}
-</body>
+            </head>
+      <body className="antialiased">
+        <main
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100vh",
+            width: "100%",
+          }}
+        >
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
