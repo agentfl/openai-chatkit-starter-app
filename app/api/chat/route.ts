@@ -38,7 +38,7 @@ export async function POST(req: Request) {
       }
     );
 
-    const runData = await runResponse.json();
+    const runData = await response.json();
 
     if (!runData?.id) {
       return NextResponse.json(
