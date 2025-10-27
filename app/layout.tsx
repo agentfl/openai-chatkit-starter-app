@@ -19,6 +19,11 @@ export default function RootLayout({
           src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
           strategy="beforeInteractive"
         />
+          <style>{`
+    html, body {
+      background-color: white !important;
+    }
+  `}</style>
       </head>
       <body className="antialiased bg-white h-screen w-screen overflow-hidden">{children}</body>
     </html>
