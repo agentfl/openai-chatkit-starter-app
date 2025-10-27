@@ -25,7 +25,9 @@ export default function RootLayout({
     }
   `}</style>
       </head>
-      <body className="antialiased bg-white h-screen w-screen overflow-hidden">{children}</body>
+      <body className="antialiased flex items-center justify-center min-h-screen bg-white">
+  {children}
+</body>
     </html>
   );
 }
