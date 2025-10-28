@@ -7,13 +7,13 @@ export const CREATE_SESSION_ENDPOINT = "/api/create-session";
 
 export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
-    label: "What can you do?",
-    prompt: "What can you do?",
+    label: "What can you do AI investor assistant?",
+    prompt: "What can you do investor assistant?",
     icon: "circle-question",
   },
 ];
 
-export const PLACEHOLDER_INPUT = "Little Fish?  Markets? Ask me.";
+export const PLACEHOLDER_INPUT = "Ask me about Little Fish and markets.";
 
 export const GREETING = "How can I help you today?";
 
