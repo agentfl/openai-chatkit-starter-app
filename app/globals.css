@@ -48,3 +48,25 @@ html, body {
   height: 100%;
   width: 100%;
 }
+/* === Center ChatKit iframe and prompt vertically and horizontally === */
+iframe[src*="platform.openai.com"] {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 80vw !important;
+  height: 80vh !important;
+  border: none !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure the inner ChatKit UI (prompt area) is centered */
+iframe[src*="platform.openai.com"] * {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
