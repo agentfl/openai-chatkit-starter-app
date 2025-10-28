@@ -9,27 +9,27 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "What can you do?",
     prompt: "What can you do investor assistant?",
-    icon: "zap",
+    icon: "zap" as any,
   },
     {
     label: "What’s the manager’s market outlook?",
     prompt: "Summarize the fund manager’s macro and crypto market outlook from the most recent reports, including expectations for Bitcoin, Ethereum, and altcoins.",
-    icon: "globe",
+    icon: "globe" as any,
   },
   {
     label: "What are the main risks right now?",
     prompt: "List the key risks or conditions that could challenge the fund’s base case as discussed in recent investor reports.",
-    icon: "circle-question",
+    icon: "circle-question" as any,
   },
    {
     label: "What catalysts could move crypto markets?",
     prompt: "Summarize the catalysts or macro events (ETFs, rate cuts, legislation) the manager is tracking for potential impact on crypto markets.",
-    icon: "trending-up",
+    icon: "trending-up" as any,
   },
   {
     label: "How are fund operations and staking performing?",
     prompt: "Provide an update on fund operations, including custody platforms, staking performance, and security practices.",
-    icon: "database",
+    icon: "database" as any,
   },
 ];
 
