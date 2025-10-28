@@ -9,7 +9,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "What can you do?",
     prompt: "What can you do investor assistant?",
-    icon: "target",
+    icon: "zap",
   },
     {
     label: "What’s the manager’s market outlook?",
@@ -24,7 +24,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
    {
     label: "What catalysts could move crypto markets?",
     prompt: "Summarize the catalysts or macro events (ETFs, rate cuts, legislation) the manager is tracking for potential impact on crypto markets.",
-    icon: "zap",
+    icon: "trending-up",
   },
   {
     label: "How are fund operations and staking performing?",
