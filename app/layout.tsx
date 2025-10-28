@@ -19,6 +19,23 @@ export default function RootLayout({
           src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
           strategy="beforeInteractive"
         />
+        <Script id="chatkit-init" strategy="afterInteractive">
+  {`
+    window.chatkitConfig = {
+      style: {
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "80vw",
+        height: "80vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }
+    };
+  `}
+</Script>
             <style>{`
     html, body {
       background-color: white !important;
