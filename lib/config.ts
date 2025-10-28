@@ -19,7 +19,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "What are the main risks right now?",
     prompt: "List the key risks or conditions that could challenge the fund’s base case as discussed in recent investor reports.",
-    icon: "message",
+    icon: "book",
   },
    {
     label: "What catalysts could move crypto markets?",
