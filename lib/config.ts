@@ -9,7 +9,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "What can you do?",
     prompt: "What can you do investor assistant?",
-    icon: "circle-question",
+    icon: "target",
   },
     {
     label: "What’s the manager’s market outlook?",
@@ -19,7 +19,7 @@ export const STARTER_PROMPTS: StartScreenPrompt[] = [
   {
     label: "What are the main risks right now?",
     prompt: "List the key risks or conditions that could challenge the fund’s base case as discussed in recent investor reports.",
-    icon: "shield",
+    icon: "circle-question",
   },
    {
     label: "What catalysts could move crypto markets?",
