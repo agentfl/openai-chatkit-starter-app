@@ -1,5 +1,4 @@
 "use client";
-
 import { ChatKit } from "@openai/chatkit-react";
 
 export default function ChatInterface() {
@@ -15,18 +14,15 @@ export default function ChatInterface() {
       }}
     >
       <ChatKit
-  config={{
-    workflow: process.env.NEXT_PUBLIC_CHATKIT_WORKFLOW_ID!,
-  }}
-  style={{
-    width: "80vw",
-    height: "80vh",
-    borderRadius: "0",
-    backgroundColor: "white",
-    boxShadow: "none",
-  }}
-/>
-
+        workflow={process.env.NEXT_PUBLIC_CHATKIT_WORKFLOW_ID!}
+        style={{
+          width: "80vw",
+          height: "80vh",
+          borderRadius: "0",
+          backgroundColor: "white",
+          boxShadow: "none",
+        }}
+      />
     </div>
   );
 }
