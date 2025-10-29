@@ -32,6 +32,22 @@ export default function RootLayout({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: "white",
+        border: "none",
+        <Script id="chatkit-style-override" strategy="afterInteractive">
+{`
+  const style = document.createElement("style");
+  style.innerHTML = \`
+    iframe[src*="chatkit"], [data-chatkit-root] {
+      background: white !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+  \`;
+  document.head.appendChild(style);
+`}
+</Script>
+
       }
     };
   `}
