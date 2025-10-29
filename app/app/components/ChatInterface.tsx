@@ -15,13 +15,13 @@ export default function ChatInterface() {
       }}
     >
       <ChatKit
-        deploymentId={process.env.NEXT_PUBLIC_CHATKIT_WORKFLOW_ID!}
+  workflow={process.env.NEXT_PUBLIC_CHATKIT_WORKFLOW_ID!}
   style={{
-      width: "80vw",
-      height: "80vh",
-      borderRadius: "0",
-      backgroundColor: "white",
-      boxShadow: "none",
+    width: "80vw",
+    height: "80vh",
+    borderRadius: "0",
+    backgroundColor: "white",
+    boxShadow: "none",
   }}
 />
 
