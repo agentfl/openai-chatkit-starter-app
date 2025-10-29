@@ -15,7 +15,9 @@ export default function ChatInterface() {
       }}
     >
       <ChatKit
-  workflow={process.env.NEXT_PUBLIC_CHATKIT_WORKFLOW_ID!}
+  config={{
+    workflow: process.env.NEXT_PUBLIC_CHATKIT_WORKFLOW_ID!,
+  }}
   style={{
     width: "80vw",
     height: "80vh",
