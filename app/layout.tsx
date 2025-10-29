@@ -15,49 +15,54 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Load ChatKit library */}
         <Script
           src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js"
           strategy="beforeInteractive"
         />
-        <Script id="chatkit-init" strategy="afterInteractive">
-  {`
-    window.chatkitConfig = {
-      style: {
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: "80vw",
-        height: "80vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "white",
-        border: "none",
-        <Script id="chatkit-style-override" strategy="afterInteractive">
-{`
-  const style = document.createElement("style");
-  style.innerHTML = \`
-    iframe[src*="chatkit"], [data-chatkit-root] {
-      background: white !important;
-      box-shadow: none !important;
-      border: none !important;
-    }
-  \`;
-  document.head.appendChild(style);
-`}
-</Script>
 
-      }
-    };
-  `}
-</Script>
-            <style>{`
-    html, body {
-      background-color: white !important;
-    }
-  `}</style>
-            </head>
+        {/* Initialize ChatKit configuration */}
+        <Script id="chatkit-init" strategy="afterInteractive">{`
+          window.chatkitConfig = {
+            style: {
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "80vw",
+              height: "80vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "white",
+              border: "none",
+              boxShadow: "none",
+              borderRadius: "0px",
+            },
+          };
+        `}</Script>
+
+        {/* Force iframe & root to match white background, no border */}
+        <Script id="chatkit-style-override" strategy="afterInteractive">{`
+          const style = document.createElement("style");
+          style.innerHTML = \`
+            iframe[src*="chatkit"], [data-chatkit-root] {
+              background: white !important;
+              box-shadow: none !important;
+              border: none !important;
+              border-radius: 0px !important;
+            }
+          \`;
+          document.head.appendChild(style);
+        `}</Script>
+
+        <style>{`
+          html, body {
+            background-color: white !important;
+          }
+        `}</style>
+      </head>
+
       <body className="antialiased">
         <main
           style={{
