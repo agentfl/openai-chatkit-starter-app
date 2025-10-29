@@ -1,5 +1,5 @@
-import App from "./App";
+import ChatInterface from "./components/ChatInterface";
 
-export default function Home() {
-  return <App />;
+export default function Page() {
+  return <ChatInterface />;
 }
