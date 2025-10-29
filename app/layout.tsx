@@ -34,31 +34,36 @@ export default function RootLayout({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              backgroundColor: "white",
+              background: "transparent",
               border: "none",
               boxShadow: "none",
-              borderRadius: "0px",
+              borderRadius: "0",
             },
           };
         `}</Script>
 
-        {/* Force iframe & root to match white background, no border */}
-        <Script id="chatkit-style-override" strategy="afterInteractive">{`
-          const style = document.createElement("style");
-          style.innerHTML = \`
-            iframe[src*="chatkit"], [data-chatkit-root] {
-              background: white !important;
-              box-shadow: none !important;
-              border: none !important;
-              border-radius: 0px !important;
-            }
-          \`;
-          document.head.appendChild(style);
+        {/* Override ChatKit container background */}
+        <Script id="chatkit-remove-gray" strategy="afterInteractive">{`
+          function removeChatkitGray() {
+            const host = document.querySelector('[data-chatkit-root]');
+            if (!host) return;
+            host.style.background = "transparent";
+            host.style.boxShadow = "none";
+            host.style.border = "none";
+            host.style.borderRadius = "0";
+            host.style.padding = "0";
+          }
+
+          // Wait for chatkit to initialize
+          const observer = new MutationObserver(() => removeChatkitGray());
+          observer.observe(document.body, { childList: true, subtree: true });
+          window.addEventListener("load", removeChatkitGray);
         `}</Script>
 
         <style>{`
           html, body {
-            background-color: white !important;
+            background: white !important;
+            overflow: hidden;
           }
         `}</style>
       </head>
@@ -71,6 +76,7 @@ export default function RootLayout({
             alignItems: "center",
             height: "100vh",
             width: "100%",
+            backgroundColor: "white",
           }}
         >
           {children}
